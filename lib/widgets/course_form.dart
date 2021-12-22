@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +10,7 @@ class CourseForm extends StatefulWidget {
 }
 
 class _CourseFormState extends State<CourseForm> {
-  final _controller = new TextEditingController();
+  final _controller = TextEditingController();
   var _selectedCouse = '';
   void _sendCourse() async{
     FocusScope.of(context).unfocus();
@@ -29,19 +31,32 @@ class _CourseFormState extends State<CourseForm> {
       padding: EdgeInsets.all(8),
       child: Column(
         children: [
+          SizedBox(height: 30),
           TextField(
               controller: _controller,
-              decoration: InputDecoration(labelText: 'Course',),
+              decoration: InputDecoration(
+                labelText: 'Course',
+                prefixIcon: const Icon(Icons.book_outlined),
+                contentPadding: const EdgeInsets.fromLTRB(20, 15, 20, 15),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
               onChanged: (value) {
                 setState(() {
                   _selectedCouse = value;
                 });
               },
             ),
-          SizedBox(height: 8,),
-          RaisedButton(
+          SizedBox(height: 20),
+          ElevatedButton(
             onPressed: _selectedCouse.trim().isEmpty ? null: _sendCourse,
-            child: Text('Add'),
+            child: Text('Add', style: TextStyle(fontSize: 23),),
+            style: ElevatedButton.styleFrom(
+              primary: Colors.redAccent,
+              shadowColor: Colors.redAccent,
+              padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
+          ),
           ),
         ],
       ),

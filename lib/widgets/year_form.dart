@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, prefer_const_constructors, deprecated_member_use, unused_local_variable, await_only_futures
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +11,7 @@ class YearForm extends StatefulWidget {
 
 class _YearFormState extends State<YearForm> {
   final List<String> yearType = ['I', 'II', 'III','IV'];
-  final _controller = new TextEditingController();
+  final _controller = TextEditingController();
   var _selectedYear = '';
   // var _selectedCouse = '';
   void _sendyear() async{
@@ -18,12 +20,7 @@ class _YearFormState extends State<YearForm> {
     // final userData = await Firestore.instance.collection('users').document(user.uid).get();
     final userData = await Firestore.instance.collection('courses');
     print(userData);
-    // Firestore.instance.collection('years').add({
-    //   'year': _selectedYear,
-    //   'courseId':1,
-    //   'createdAt': Timestamp.now(),
-    //   'userId': user.uid,
-    // });
+    
     _controller.clear();
     Navigator.of(context).pop();
   }

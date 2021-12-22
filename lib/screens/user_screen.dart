@@ -1,5 +1,8 @@
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ug_app/screens/calendar.dart';
 import 'package:ug_app/screens/user_feedback_screen.dart';
 import 'package:ug_app/widgets/drawer_widget.dart';
 class UserScreen extends StatelessWidget {
@@ -11,6 +14,7 @@ class UserScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.redAccent,
         title: Text('Welcome ${userData['username']}'),
         actions: [
           DropdownButton(
@@ -21,6 +25,7 @@ class UserScreen extends StatelessWidget {
             items: [
               DropdownMenuItem(
                 child: Container(
+                  // ignore: prefer_const_literals_to_create_immutables
                   child: Row(children: [
                     Icon(
                       Icons.exit_to_app,
@@ -56,16 +61,16 @@ class UserScreen extends StatelessWidget {
 
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.only(top: 0.0, bottom: 10.0, left: 15, right:8.0),
+                padding: const EdgeInsets.only(top: 0.0, bottom: 10.0, left: 20, right:8.0),
                 child: Center(
                   child: Wrap(
-                    spacing: 20.0,
-                    runSpacing: 20.0,
+                    spacing: 30.0,
+                    runSpacing: 30.0,
                     children: [
                       // Profile
                       SizedBox(
-                        width: 140.0,
-                        height: 140.0,
+                        width: 150.0,
+                        height: 160.0,
                         child: Card(
                           color: Colors.white,
                           elevation: 10.0,
@@ -81,7 +86,7 @@ class UserScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
-                                    Image.asset("assets/images/graduated.png", width: 64.0),
+                                    Image.asset("assets/images/graduated.png", width: 77.0),
                                     const SizedBox(height: 10.0),
                                     const Text(
                                       "Profile",
@@ -100,10 +105,10 @@ class UserScreen extends StatelessWidget {
                       ),
 
                       // Feedback
-                      const Padding(padding: EdgeInsets.only(right: 5,),),
+                      //const Padding(padding: EdgeInsets.only(right: 5,),),
                       SizedBox(
-                        width: 140.0,
-                        height: 140.0,
+                        width: 150.0,
+                        height: 160.0,
                         child: Card(
                           color: Colors.white,
                           elevation: 10.0,
@@ -120,7 +125,7 @@ class UserScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
-                                    Image.asset("assets/images/feedback.png", width: 64.0),
+                                    Image.asset("assets/images/feedback.png", width: 77.0),
                                     const SizedBox(height: 10.0),
                                     const Text(
                                       "Feedback",
@@ -137,49 +142,12 @@ class UserScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      //Account Create
-                      SizedBox(
-                        width: 140.0,
-                        height: 140.0,
-                        child: Card(
-                          color: Colors.white,
-                          elevation: 10.0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0)
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) {}));
-                            },
-                            splashColor: Colors.redAccent,
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  children: [
-                                    Image.asset("assets/images/course.png", width: 64.0),
-                                    const SizedBox(height: 10.0),
-                                    const Text(
-                                      "Account",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
+                      
                       //Class
-                      const Padding(padding: EdgeInsets.only(right: 5,),),
+                      //const Padding(padding: EdgeInsets.only(right: 5,),),
                       SizedBox(
-                        width: 140.0,
-                        height: 140.0,
+                        width: 150.0,
+                        height: 160.0,
                         child: Card(
                           color: Colors.white,
                           elevation: 10.0,
@@ -195,8 +163,8 @@ class UserScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(12.0),
                                 child: Column(
                                   children: [
-                                    Image.asset("assets/images/class.png", width: 74.0, ),
-                                    const SizedBox(height: 10.0),
+                                    Image.asset("assets/images/class.png", width: 87.0, ),
+                                    const SizedBox(height: 15.0),
                                     const Text(
                                       "Class",
                                       style: TextStyle(
@@ -215,8 +183,8 @@ class UserScreen extends StatelessWidget {
 
                       //TimeTable
                       SizedBox(
-                        width: 140.0,
-                        height: 140.0,
+                        width: 150.0,
+                        height: 160.0,
                         child: Card(
                           color: Colors.white,
                           elevation: 10.0,
@@ -225,6 +193,7 @@ class UserScreen extends StatelessWidget {
                           ),
                           child: InkWell(
                             onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const CalendarData())); 
                             },
                             splashColor: Colors.redAccent,
                             child: Center(
@@ -232,7 +201,7 @@ class UserScreen extends StatelessWidget {
                                 padding: const EdgeInsets.all(8.0),
                                 child: Column(
                                   children: [
-                                    Image.asset("assets/images/timetable.jpg", width: 64.0),
+                                    Image.asset("assets/images/timetable.jpg", width: 87.0),
                                     const SizedBox(height: 10.0),
                                     const Text(
                                       "TimeTable",
@@ -249,7 +218,43 @@ class UserScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      const Padding(padding: EdgeInsets.only(right: 5,),),
+                      //const Padding(padding: EdgeInsets.only(right: 5,),),
+                      //LogOut
+                      SizedBox(
+                        width: 150.0,
+                        height: 150.0,
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 10.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: InkWell(
+                            splashColor: Colors.redAccent,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/images/logout.png", width: 64.0),
+                                    const SizedBox(height: 0.0),
+                                    ActionChip(
+                                      label: const Text("Logout", style: TextStyle(
+                                        fontSize:20,
+                                        fontWeight: FontWeight.bold,
+                                      ),),
+                                      onPressed: () {
+                                      },
+                                      backgroundColor: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
                   ),
                 ),

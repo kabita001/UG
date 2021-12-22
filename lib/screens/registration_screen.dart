@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, avoid_print, prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +14,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class RegistrationScreenState extends State<RegistrationScreen> {
+  
   var _isLoading = false;
   final _auth = FirebaseAuth.instance;
 
@@ -65,9 +68,17 @@ class RegistrationScreenState extends State<RegistrationScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Registration Page'),
+        centerTitle: true,
+        title: Text('Registration Page',
+          style: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.bold,
+            color: Colors.white,
+            ),
+          ),
+        backgroundColor: Colors.redAccent,
       ),
-      backgroundColor: Theme.of(context).accentColor,
+      //backgroundColor: Theme.of(context).accentColor,
       body: RegistrationForm(_submitAuthForm, _isLoading),
     );
   }

@@ -1,11 +1,11 @@
-import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, missing_required_param
+
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ug_app/widgets/auth_form.dart';
 import 'package:ug_app/widgets/course_form.dart';
 
 class CourseScreen extends StatefulWidget {
+  const CourseScreen({Key key}) : super(key: key);
+
   @override
   _CourseScreenState createState() => _CourseScreenState();
 }
@@ -15,35 +15,15 @@ class _CourseScreenState extends State<CourseScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.redAccent,
         title: Text('Course'),
+        centerTitle: true,
         actions: [
           DropdownButton(
             icon: Icon(
               Icons.more_vert,
               color: Theme.of(context).primaryTextTheme.button.color,
             ),
-            items: [
-              DropdownMenuItem(
-                child: Container(
-                  child: Row(children: [
-                    Icon(
-                      Icons.exit_to_app,
-                      color: Colors.pink,
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Text('Logout'),
-                  ]),
-                ),
-                value: 'logout',
-              ),
-            ],
-            onChanged: (itemIdentifier) {
-              if (itemIdentifier == 'logout') {
-                FirebaseAuth.instance.signOut();
-              }
-            },
           )
         ],
       ),
@@ -54,14 +34,6 @@ class _CourseScreenState extends State<CourseScreen> {
             ]
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   onPressed: () {
-      //     Firestore.instance
-      //         .collection('chats/pEqs5FG3Iup37ZFXg8cm/messages')
-      //         .add({'text': 'This was by added by clicking button'});
-      //   },
-      // ),
     );
   }
 }

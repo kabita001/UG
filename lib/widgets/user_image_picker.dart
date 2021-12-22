@@ -1,3 +1,4 @@
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
 
 
 import 'dart:io';
@@ -26,28 +27,19 @@ class _UserImagePickerState extends State<UserImagePicker> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // ClipRRect(
-        // height: 70.0,
-        // width: 70.0,
-        // color: Color(0xffFF0E58),
-        //   borderRadius: BorderRadius.all(Radius.circular(10.0)),//add border radius here
-        //   child: _pickedImage != null?Image.file(_pickedImage): null,//add image location here
-        // ),
         ClipRRect(
           borderRadius: BorderRadius.circular(8.0),//or 15.0
           child: Container(
-            height: 70.0,
-            width: 60.0,
-            color: Color(0xffFF0E58),
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.redAccent)
+            ),
+            height: 100.0,
+            width: 150.0,
             child: _pickedImage != null?Image.file(_pickedImage): null,
           ),
         ),
-        // CircleAvatar(
-        //   backgroundImage: _pickedImage != null? FileImage(_pickedImage): null,
-        //   radius: 40,
-        //   backgroundColor: Colors.grey,
-        // ),
         FlatButton.icon(
+          color: Colors.redAccent,
           textColor: Theme.of(context).primaryColor,
           onPressed: _pickImage,
           icon: Icon(Icons.image),

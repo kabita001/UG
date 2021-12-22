@@ -1,9 +1,12 @@
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ug_app/widgets/feedback_item.dart';
 
+// admin
 class AllFeedbackWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -23,6 +26,7 @@ class AllFeedbackWidget extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   );
                 }
+                //view feedback
                 final feedDocs = feedbackSnapshot.data.documents;
                 return ListView.builder(
                   itemCount: feedDocs.length,

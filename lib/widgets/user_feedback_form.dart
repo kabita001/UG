@@ -1,3 +1,5 @@
+// ignore_for_file: deprecated_member_use, prefer_const_constructors
+
 import 'dart:io';
 
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ class UserFeedbackForm extends StatefulWidget {
 }
 
 class _UserFeedbackFormState extends State<UserFeedbackForm> {
+  
   final List<String> courseType = ['BBA', 'IT'];
   final List<String> yearType = ['I', 'II', 'III','IV'];
   final List<String> feedbackType = ['Faculty', 'Course', 'Facility'];
@@ -28,7 +31,7 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
     _userImageFile = image;
   }
 
-
+  //submit feedback
   void _trySubmit() {
     FocusScope.of(context).unfocus();
     final isValid = _formKey.currentState.validate();
@@ -43,138 +46,139 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
   }
   @override
   Widget build(BuildContext context) {
-
-
     return  Form(
-              key: _formKey,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-                child: ListView(
-                    shrinkWrap: true,
-                  children: [
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 1),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: DropdownButtonFormField(
-                        key: ValueKey('course'),
-                        items: courseType.map((course) {
-                          return DropdownMenuItem(
-                            value: course,
-                            child: Text(course),
-                          );
-                        }).toList(),
-                        decoration: InputDecoration(labelText: 'Course'),
-                        validator: (value) {
-                          if(value == null){
-                            return 'Select a Course';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          setState(() {
-                            _course = value;
-                          });
-                        },
-                        onChanged: (newValue) {
-                          setState(() {
-                            _course = newValue;
-                          });
-                        },
+      key: _formKey,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+          child: ListView(
+            shrinkWrap: true,
+            children: [
+              //course type
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey, width: 1),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: DropdownButtonFormField(
+                  key: ValueKey('course'),
+                  items: courseType.map((course) {
+                    return DropdownMenuItem(
+                      value: course,
+                      child: Text(course),
+                    );
+                  }).toList(),
+                  decoration: InputDecoration(labelText: 'Course'),
+                  validator: (value) {
+                    if(value == null){
+                      return 'Select a Course';
+                    }
+                      return null;
+                  },
+                  onSaved: (value) {
+                    setState(() {
+                      _course = value;
+                    });
+                  },
+                  onChanged: (newValue) {
+                    setState(() {
+                      _course = newValue;
+                    });
+                  },
 
-                        value: courseType[0],
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 1),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: DropdownButtonFormField(
-                        key: ValueKey('Year'),
-                        items: yearType.map((year) {
-                          return DropdownMenuItem(
-                            value: year,
-                            child: Text(year),
-                          );
-                        }).toList(),
-                        decoration: InputDecoration(labelText: 'Year'),
-                        validator: (value) {
-                          if(value == null){
-                            return 'Select a Year';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          setState(() {
-                            _year = value;
-                          });
-                        },
-                        onChanged: (newValue) {
-                          setState(() {
-                            _year = newValue;
-                          });
-                        },
+                  value: courseType[0],
+                ),
+              ),
+              //Year Selection
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey, width: 1),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: DropdownButtonFormField(
+                  key: ValueKey('Year'),
+                  items: yearType.map((year) {
+                    return DropdownMenuItem(
+                      value: year,
+                      child: Text(year),
+                    );
+                  }).toList(),
+                  decoration: InputDecoration(labelText: 'Year'),
+                  validator: (value) {
+                    if(value == null){
+                      return 'Select a Year';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    setState(() {
+                      _year = value;
+                    });
+                  },
+                  onChanged: (newValue) {
+                    setState(() {
+                      _year = newValue;
+                    });
+                  },
 
-                        value: yearType[0],
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: TextFormField(
-                        decoration: const InputDecoration(
-                          labelText: 'Subject',
-                          labelStyle: TextStyle(fontSize: 20.0),
-                          border: OutlineInputBorder(),
-                          errorStyle:
-                          TextStyle(color: Colors.redAccent, fontSize: 15),
-                        ),
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return 'Enter Subject';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          _subject = value;
-                        },
-                      ),
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-                      decoration: BoxDecoration(
-                        border: Border.all(color: Colors.grey, width: 1),
-                        borderRadius: BorderRadius.circular(4),
-                      ),
-                      child: DropdownButtonFormField(
-                        key: ValueKey('feedbackType'),
-                        items: feedbackType.map((feedback) {
-                          return DropdownMenuItem(
-                            value: feedback,
-                            child: Text(feedback),
-                          );
-                        }).toList(),
-                        decoration: InputDecoration(labelText: 'Feedback Type'),
-                        validator: (value) {
-                          if(value == null){
-                            return 'Select feedback type';
-                          }
-                          return null;
-                        },
-                        onSaved: (value) {
-                          setState(() {
-                            _feedback = value;
-                          });
-                        },
-                        onChanged: (newValue) {
-                          setState(() {
-                            _feedback = newValue;
+                  value: yearType[0],
+                ),
+              ),
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10.0),
+                child: TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Subject',
+                    labelStyle: TextStyle(fontSize: 20.0),
+                    border: OutlineInputBorder(),
+                    errorStyle:
+                    TextStyle(color: Colors.redAccent, fontSize: 15),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Enter Subject';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _subject = value;
+                  },
+                ),
+              ),
+              //choose category you want to give feedback about
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10.0),
+                padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.grey, width: 1),
+                  borderRadius: BorderRadius.circular(4),
+                ),
+                child: DropdownButtonFormField(
+                  key: ValueKey('feedbackType'),
+                  items: feedbackType.map((feedback) {
+                    return DropdownMenuItem(
+                      value: feedback,
+                      child: Text(feedback),
+                    );
+                  }).toList(),
+                  decoration: InputDecoration(labelText: 'Feedback Type'),
+                  validator: (value) {
+                    if(value == null){
+                      return 'Select feedback type';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    setState(() {
+                      _feedback = value;
+                    });
+                  },
+                  onChanged: (newValue) {
+                    setState(() {
+                      _feedback = newValue;
                           });
                         },
                         value: feedbackType[0],
@@ -194,9 +198,9 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                           errorStyle:
                           TextStyle(color: Colors.redAccent, fontSize: 15),
                         ),
-                          validator: (value) {
-                            if (value.isEmpty) {
-                              return 'Please enter a comment.';
+                        validator: (value) {
+                          if (value.isEmpty) {
+                            return 'Please enter a comment.';
                             }
                             if (value.length < 10) {
                               return 'please enter at least 10 character comment';
@@ -210,6 +214,7 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                         },
                       ),
                     ),
+                    //image
                     const SizedBox(height: 20),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
@@ -229,18 +234,17 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                               padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 15),
                             ),
                             onPressed: _trySubmit,
-                            child: const Text(
-                              'submit',
-                              style: TextStyle(fontSize: 25),
-                            ),
-                          ),
-
-                        ],
-                      ),
-                    )
-                  ],
-                ),
+                        child: const Text(
+                          'submit',
+                        style: TextStyle(fontSize: 25),
+                    ),
+                  ),
+                ],
               ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }

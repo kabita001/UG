@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_if_null_operators
+
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -60,12 +62,22 @@ class FeedbackItemState extends State<FeedbackItem> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       CircleAvatar(
-
                         backgroundImage: NetworkImage(widget.imageUrl != null?widget.imageUrl: 'https://i.pinimg.com/236x/aa/c8/27/aac827a17c5e7749823cc09cc8dbeec7.jpg'),
-                        radius: 40,
+                        radius: 80,
                         backgroundColor: Colors.grey,
                       ),
-                      Text(widget.course, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      SizedBox(
+                        child: Container(
+                          width: 280.0,
+                          height: 60.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          child: Center(child: Text(widget.course, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))))),
                       Text(widget.year, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                       Text(widget.subject, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                       Text(widget.feedbackType, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),

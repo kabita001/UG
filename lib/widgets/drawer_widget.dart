@@ -1,5 +1,7 @@
 
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -23,22 +25,22 @@ class DrawerWidget extends StatelessWidget{
           child: Column(
             children: [
               AppBar(
-                title: Text('Hello !!!'),
+                backgroundColor: Colors.redAccent,
+                title: const Text('Hello !!!'),
                 automaticallyImplyLeading: false, // never add back button
               ),
               if(data['role'] == 'SUPER')
-              Divider(),
-              if(data['role'] == 'SUPER')
+              const Divider(), // creates height, thickness
+              if(data['role'] == 'SUPER')// while login the role of user is super then redirect page to
               ListTile(
-                  leading: Icon(Icons.shop), title: Text('Mains page'),
+                  leading: Icon(Icons.pages_sharp), title: Text('Main page'),
                   onTap: (){
-                    // Navigator.of(context).popAndPushNamed('/super');
                     Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (ctx) => DashboardScreen(data)));
                   }
               ),
               if(data['role'] == 'USER')
                 Divider(),
-              if(data['role'] == 'USER')
+              if(data['role'] == 'USER')// if user then redirect to uder papge
                 ListTile(
                     leading: Icon(Icons.shop), title: Text('Main page'),
                     onTap: (){
@@ -47,7 +49,7 @@ class DrawerWidget extends StatelessWidget{
                 ),
               if(data['role'] == 'SUPER')
               Divider(),
-              if(data['role'] == 'SUPER')
+              if(data['role'] == 'SUPER')// feedback viewer
               ListTile(
                   leading: Icon(Icons.feedback_rounded ), title: Text('Feedback'),
                   onTap: (){
@@ -56,7 +58,7 @@ class DrawerWidget extends StatelessWidget{
               ),
               if(data['role'] == 'USER')
                 Divider(),
-              if(data['role'] == 'USER')
+              if(data['role'] == 'USER')// give feedback
                 ListTile(
                     leading: Icon(Icons.feedback_rounded ), title: Text('Your Feedback'),
                     onTap: (){
@@ -97,9 +99,6 @@ class DrawerWidget extends StatelessWidget{
                     Navigator.of(context).pop();
                     Navigator.of(context).pushReplacementNamed('/');
                     FirebaseAuth.instance.signOut();
-                          // .then((value) => Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(builder: (context) => AuthScreen()),(route) => false));
-                    // FirebaseAuth.instance.signOut();
-                    // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => AuthScreen()), (route) => false);
                   }
               ),
             ],

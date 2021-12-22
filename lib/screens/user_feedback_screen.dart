@@ -1,5 +1,7 @@
 
 
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, avoid_print
+
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -28,11 +30,14 @@ class UserFeedbackScreenState extends State<UserFeedbackScreen> {
         _isLoading = true;
       });
       final user = await FirebaseAuth.instance.currentUser();
+      //get user id
       final userData = await Firestore.instance.collection('users').document(user.uid).get();
+      //stored in firebase storege as feedback images
       final ref = FirebaseStorage.instance.ref().child('feedback_images').child(user.uid + '.jpg');
       await ref.putFile(userImageFile).onComplete;
       final url = await ref.getDownloadURL();
       
+      //stored data in firestore collection as feedback
       Firestore.instance.collection('feedbacks').add({
         'course': course,
         'year': year,
@@ -83,6 +88,7 @@ class UserFeedbackScreenState extends State<UserFeedbackScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.redAccent,
         title: Text('Submit Feedback'),
       ),
       body: UserFeedbackForm(_sendMessage, _isLoading),

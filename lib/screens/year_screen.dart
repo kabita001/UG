@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -26,6 +28,7 @@ class _YearScreenState extends State<YearScreen> {
             items: [
               DropdownMenuItem(
                 child: Container(
+                  // ignore: prefer_const_literals_to_create_immutables
                   child: Row(children: [
                     Icon(
                       Icons.exit_to_app,
@@ -55,14 +58,6 @@ class _YearScreenState extends State<YearScreen> {
             ]
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   onPressed: () {
-      //     Firestore.instance
-      //         .collection('chats/pEqs5FG3Iup37ZFXg8cm/messages')
-      //         .add({'text': 'This was by added by clicking button'});
-      //   },
-      // ),
     );
   }
 }

@@ -1,6 +1,12 @@
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ug_app/screens/all_feedback_screen.dart';
 import 'package:ug_app/screens/auth_screen.dart';
+import 'package:ug_app/screens/calendar.dart';
+import 'package:ug_app/screens/course_screen.dart';
+import 'package:ug_app/screens/registration_screen.dart';
 import 'package:ug_app/widgets/drawer_widget.dart';
 class DashboardScreen extends StatelessWidget {
   final Map<String, dynamic> userData;
@@ -11,6 +17,7 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.redAccent,
         title: Text('Hello ${userData['username']}'),
         actions: [
           DropdownButton(
@@ -21,6 +28,7 @@ class DashboardScreen extends StatelessWidget {
             items: [
               DropdownMenuItem(
                 child: Container(
+                  // ignore: prefer_const_literals_to_create_immutables
                   child: Row(children: [
                     Icon(
                       Icons.exit_to_app,
@@ -44,22 +52,255 @@ class DashboardScreen extends StatelessWidget {
           )
         ],
       ),
+      //call drawer widget
       drawer: DrawerWidget(userData),
       body: Container(
         child: Column(
-            children: [
-              Expanded(child: Text('DashBoard Area')),
-            ]
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.only(top: 0.0, bottom: 10.0, left: 15, right:8.0),
+                child: Center(
+                  child: Wrap(
+                    spacing: 20.0,
+                    runSpacing: 20.0,
+                    children: [
+                      // Profile
+                      SizedBox(
+                        width: 140.0,
+                        height: 140.0,
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 10.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              //Navigator.push(context, MaterialPageRoute(builder: (context) => const ())); 
+                            },
+                            splashColor: Colors.redAccent,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/images/graduated.png", width: 64.0),
+                                    const SizedBox(height: 10.0),
+                                    const Text(
+                                      "Profile",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      // Feedback
+                      const Padding(padding: EdgeInsets.only(right: 5,),),
+                      SizedBox(
+                        width: 140.0,
+                        height: 140.0,
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 10.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => AllFeedbackScreen()));
+                            },
+                            splashColor: Colors.redAccent,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/images/feedback.png", width: 64.0),
+                                    const SizedBox(height: 10.0),
+                                    const Text(
+                                      "Feedback",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      //Account Create
+                      SizedBox(
+                        width: 140.0,
+                        height: 140.0,
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 10.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => RegistrationScreen())); 
+                            },
+                            splashColor: Colors.redAccent,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/images/course.png", width: 64.0),
+                                    const SizedBox(height: 10.0),
+                                    const Text(
+                                      "Account",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      
+                      //Class
+                      const Padding(padding: EdgeInsets.only(right: 5,),),
+                      SizedBox(
+                        width: 140.0,
+                        height: 140.0,
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 10.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => CourseScreen())); 
+                            },
+                            splashColor: Colors.redAccent,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(12.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/images/class.png", width: 74.0, ),
+                                    const SizedBox(height: 10.0),
+                                    const Text(
+                                      "Class",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+
+                      //TimeTable                     
+                      SizedBox(
+                        width: 140.0,
+                        height: 140.0,
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 10.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: InkWell(
+                            onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => const CalendarData())); 
+                            },
+                            splashColor: Colors.redAccent,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/images/timetable.jpg", width: 64.0),
+                                    const SizedBox(height: 10.0),
+                                    const Text(
+                                      "TimeTable",
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 20.0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      //LogOut
+                      const Padding(padding: EdgeInsets.only(right: 5,),),
+                      SizedBox(
+                        width: 140.0,
+                        height: 140.0,
+                        child: Card(
+                          color: Colors.white,
+                          elevation: 10.0,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(8.0)
+                          ),
+                          child: InkWell(
+                            splashColor: Colors.redAccent,
+                            child: Center(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Column(
+                                  children: [
+                                    Image.asset("assets/images/logout.png", width: 64.0),
+                                    const SizedBox(height: 0.0),
+                                    ActionChip(
+                                      label: const Text("Logout", style: TextStyle(
+                                        fontSize:20,
+                                        fontWeight: FontWeight.bold,
+                                      ),),
+                                      onPressed: () {
+                                      },
+                                      backgroundColor: Colors.white,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   onPressed: () {
-      //     Firestore.instance
-      //         .collection('chats/pEqs5FG3Iup37ZFXg8cm/messages')
-      //         .add({'text': 'This was by added by clicking button'});
-      //   },
-      // ),
     );
 
   }
