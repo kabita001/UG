@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:ug_app/screens/all_feedback_screen.dart';
 import 'package:ug_app/screens/calendar.dart';
 import 'package:ug_app/screens/course_screen.dart';
+import 'package:ug_app/screens/profile.dart';
 import 'package:ug_app/screens/registration_screen.dart';
 import 'package:ug_app/widgets/drawer_widget.dart';
 class DashboardScreen extends StatelessWidget {
@@ -77,7 +78,7 @@ class DashboardScreen extends StatelessWidget {
                           ),
                           child: InkWell(
                             onTap: () {
-                              //Navigator.push(context, MaterialPageRoute(builder: (context) => const ())); 
+                              Navigator.push(context, MaterialPageRoute(builder: (context) => Profile(userData))); 
                             },
                             splashColor: Colors.redAccent,
                             child: Center(
