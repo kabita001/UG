@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 
 import 'dart:io';
@@ -16,6 +16,8 @@ class UserImagePicker extends StatefulWidget {
 
 class _UserImagePickerState extends State<UserImagePicker> {
   File _pickedImage;
+
+  //image picker
   void _pickImage() async {
     final pickedImageFile = await ImagePicker.pickImage(source: ImageSource.camera);
     setState(() {
@@ -23,12 +25,14 @@ class _UserImagePickerState extends State<UserImagePicker> {
     });
     widget.imagePickFn(pickedImageFile);
   }
+
+  //
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(8.0),//or 15.0
+          borderRadius: BorderRadius.circular(8.0),
           child: Container(
             decoration: BoxDecoration(
               border: Border.all(color: Colors.redAccent)

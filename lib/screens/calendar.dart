@@ -168,5 +168,5 @@ class Event{
   Event({this.title});
 
   @override
-  String toString() => this.title;
+  String toString() => title;
 }

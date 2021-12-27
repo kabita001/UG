@@ -1,9 +1,8 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ug_app/screens/all_feedback_screen.dart';
-import 'package:ug_app/screens/auth_screen.dart';
 import 'package:ug_app/screens/calendar.dart';
 import 'package:ug_app/screens/course_screen.dart';
 import 'package:ug_app/screens/registration_screen.dart';
@@ -282,6 +281,7 @@ class DashboardScreen extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                       ),),
                                       onPressed: () {
+                                        FirebaseAuth.instance.signOut();
                                       },
                                       backgroundColor: Colors.white,
                                     ),

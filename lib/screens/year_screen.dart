@@ -1,11 +1,7 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ug_app/widgets/auth_form.dart';
-import 'package:ug_app/widgets/course_form.dart';
 import 'package:ug_app/widgets/year_form.dart';
 
 class YearScreen extends StatefulWidget {

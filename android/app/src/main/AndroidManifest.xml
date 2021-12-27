@@ -3,8 +3,11 @@
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
+            <action android:name="android.speech.RecognitionService" />
         </intent>
     </queries>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS"/>
    <application
         android:label="ug_app"
         android:icon="@mipmap/ic_launcher">

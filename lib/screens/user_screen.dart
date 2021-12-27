@@ -1,10 +1,12 @@
-// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
+// ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ug_app/screens/calendar.dart';
+import 'package:ug_app/screens/profile.dart';
 import 'package:ug_app/screens/user_feedback_screen.dart';
 import 'package:ug_app/widgets/drawer_widget.dart';
+import 'package:ug_app/widgets/video_picker.dart';
 class UserScreen extends StatelessWidget {
   final Map<String, dynamic> userData;
   UserScreen(this.userData);
@@ -12,6 +14,7 @@ class UserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
@@ -79,6 +82,8 @@ class UserScreen extends StatelessWidget {
                           ),
                           child: InkWell(
                             onTap: () {
+                              Navigator.push(context, MaterialPageRoute(builder: (ctx) => Profile(userData))); 
+                              //Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => VideoUpload();
                             },
                             splashColor: Colors.redAccent,
                             child: Center(
@@ -142,45 +147,6 @@ class UserScreen extends StatelessWidget {
                           ),
                         ),
                       ),
-                      
-                      //Class
-                      //const Padding(padding: EdgeInsets.only(right: 5,),),
-                      SizedBox(
-                        width: 150.0,
-                        height: 160.0,
-                        child: Card(
-                          color: Colors.white,
-                          elevation: 10.0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0)
-                          ),
-                          child: InkWell(
-                            onTap: () {
-                            },
-                            splashColor: Colors.redAccent,
-                            child: Center(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Column(
-                                  children: [
-                                    Image.asset("assets/images/class.png", width: 87.0, ),
-                                    const SizedBox(height: 15.0),
-                                    const Text(
-                                      "Class",
-                                      style: TextStyle(
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20.0,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-
                       //TimeTable
                       SizedBox(
                         width: 150.0,
@@ -222,7 +188,7 @@ class UserScreen extends StatelessWidget {
                       //LogOut
                       SizedBox(
                         width: 150.0,
-                        height: 150.0,
+                        height: 160.0,
                         child: Card(
                           color: Colors.white,
                           elevation: 10.0,
@@ -244,6 +210,7 @@ class UserScreen extends StatelessWidget {
                                         fontWeight: FontWeight.bold,
                                       ),),
                                       onPressed: () {
+                                        FirebaseAuth.instance.signOut();
                                       },
                                       backgroundColor: Colors.white,
                                     ),
@@ -252,7 +219,7 @@ class UserScreen extends StatelessWidget {
                               ),
                               
                             ),
-                          ),
+                          ),          
                         ),
                       ),
                     ],

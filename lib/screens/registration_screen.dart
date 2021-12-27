@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, avoid_print, prefer_const_constructors
+// ignore_for_file: deprecated_member_use, avoid_print, prefer_const_constructors, use_key_in_widget_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -29,6 +29,7 @@ class RegistrationScreenState extends State<RegistrationScreen> {
         email: email,
         password: password,
       );
+      //firebase store as
       await Firestore.instance
           .collection('users')
           .document(authResult.user.uid)
@@ -47,6 +48,12 @@ class RegistrationScreenState extends State<RegistrationScreen> {
         SnackBar(
           content: Text(message),
           backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Account Created successfully'),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
       );
       setState(() {

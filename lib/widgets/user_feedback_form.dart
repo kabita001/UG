@@ -1,14 +1,15 @@
-// ignore_for_file: deprecated_member_use, prefer_const_constructors
+// ignore_for_file: deprecated_member_use, prefer_const_constructors, avoid_print, prefer_const_constructors_in_immutables, use_key_in_widget_constructors, avoid_unnecessary_containers
 
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:ug_app/widgets/speech_to_text.dart';
 import 'package:ug_app/widgets/user_image_picker.dart';
 
 class UserFeedbackForm extends StatefulWidget {
   UserFeedbackForm(this.submitFn, this.isLoading);
   final bool isLoading;
-  final void Function(String course, String year, String subject, String feedback, String comment,File userImageFile, BuildContext ctx, GlobalKey<FormState>_formKey ) submitFn;
+  final void Function(String course, String year, String subject, String feedback, String comment,File userImageFile,  BuildContext ctx, GlobalKey<FormState>_formKey ) submitFn;
 
   @override
   _UserFeedbackFormState createState() => _UserFeedbackFormState();
@@ -16,20 +17,27 @@ class UserFeedbackForm extends StatefulWidget {
 
 class _UserFeedbackFormState extends State<UserFeedbackForm> {
   
-  final List<String> courseType = ['BBA', 'IT'];
+  final List<String> facultyType = ['BBA', 'IT'];
   final List<String> yearType = ['I', 'II', 'III','IV'];
   final List<String> feedbackType = ['Faculty', 'Course', 'Facility'];
   final _formKey = GlobalKey<FormState>();
-  var _course = '';
+  var _faculty = '';
   var _year = '';
   var _subject = '';
   var _feedback = '';
-  var _comment = '';
+  String _speechText;
   BuildContext ctx;
   File _userImageFile;
+  //image
   void _pickedImage(File image){
     _userImageFile = image;
   }
+  //speech to text
+  void _textFromSpeech(String text){
+    _speechText = text;
+  }
+  //
+
 
   //submit feedback
   void _trySubmit() {
@@ -41,9 +49,11 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
     }
     if (isValid) {
       _formKey.currentState.save();
-      widget.submitFn(_course,_year,_subject,_feedback,_comment,_userImageFile, context, _formKey);
+      widget.submitFn(_faculty,_year,_subject,_feedback,_speechText,_userImageFile, context, _formKey);
+      print(_speechText);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return  Form(
@@ -63,10 +73,10 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                 ),
                 child: DropdownButtonFormField(
                   key: ValueKey('course'),
-                  items: courseType.map((course) {
+                  items: facultyType.map((faculty) {
                     return DropdownMenuItem(
-                      value: course,
-                      child: Text(course),
+                      value: faculty,
+                      child: Text(faculty),
                     );
                   }).toList(),
                   decoration: InputDecoration(labelText: 'Course'),
@@ -78,19 +88,19 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                   },
                   onSaved: (value) {
                     setState(() {
-                      _course = value;
+                      _faculty = value;
                     });
                   },
                   onChanged: (newValue) {
                     setState(() {
-                      _course = newValue;
+                      _faculty = newValue;
                     });
                   },
 
-                  value: courseType[0],
+                  value: facultyType[0],
                 ),
               ),
-              //Year Selection
+              //Year Selection Field
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10.0),
                 padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
@@ -127,6 +137,7 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                   value: yearType[0],
                 ),
               ),
+              //subject field
               Container(
                 margin: const EdgeInsets.symmetric(vertical: 10.0),
                 child: TextFormField(
@@ -164,7 +175,11 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                       child: Text(feedback),
                     );
                   }).toList(),
-                  decoration: InputDecoration(labelText: 'Feedback Type'),
+                  decoration: InputDecoration(labelText: 'Feedback Type',
+                    border: UnderlineInputBorder(
+                      borderSide:
+                      BorderSide(color: Colors.transparent)),
+                  ),
                   validator: (value) {
                     if(value == null){
                       return 'Select feedback type';
@@ -184,41 +199,29 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                         value: feedbackType[0],
                       ),
                     ),
-                    //audio file
+                    //audio to text feld
+                    const SizedBox(height: 20),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: TextFormField(
-                        maxLines: 3,
-                        keyboardType: TextInputType.multiline,
-                        textInputAction: TextInputAction.next,
-                        decoration: const InputDecoration(
-                          labelText: 'Comment',
-                          labelStyle: TextStyle(fontSize: 20.0),
-                          border: OutlineInputBorder(),
-                          errorStyle:
-                          TextStyle(color: Colors.redAccent, fontSize: 15),
-                        ),
-                        validator: (value) {
-                          if (value.isEmpty) {
-                            return 'Please enter a comment.';
-                            }
-                            if (value.length < 10) {
-                              return 'please enter at least 10 character comment';
-                            }
-                            return null;
-                          },
-                        onSaved: (value) {
-                          setState(() {
-                            _comment = value;
-                          });
-                        },
+                      padding: const EdgeInsets.symmetric(horizontal: 1, vertical: 1),
+                      decoration: BoxDecoration(
+                        border: Border.all(color: Colors.grey, width: 1),
+                        borderRadius: BorderRadius.circular(4),
                       ),
+                      child: SpeechToText(_textFromSpeech),
                     ),
-                    //image
+                    //image field
                     const SizedBox(height: 20),
                     Container(
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
                       child: UserImagePicker(_pickedImage),
+                    ),
+                    SizedBox(
+                      height: 10,
+
+                    ),
+                    Container(
+                      margin: const EdgeInsets.symmetric(vertical: 10.0),
                     ),
                     const SizedBox(height: 20),
                     Container(

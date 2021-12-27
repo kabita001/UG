@@ -1,12 +1,8 @@
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors
 
-
-// ignore_for_file: prefer_const_constructors
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:ug_app/screens/all_feedback_screen.dart';
-import 'package:ug_app/screens/auth_screen.dart';
 import 'package:ug_app/screens/course_screen.dart';
 import 'package:ug_app/screens/dashboard_screen.dart';
 import 'package:ug_app/screens/registration_screen.dart';

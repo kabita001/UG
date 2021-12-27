@@ -1,7 +1,6 @@
 // ignore_for_file: deprecated_member_use, prefer_const_constructors, avoid_print, prefer_final_fields, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 
-import 'dart:io';
 import 'package:flutter/material.dart';
 
 class AuthForm extends StatefulWidget {

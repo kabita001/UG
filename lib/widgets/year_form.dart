@@ -1,4 +1,4 @@
-// ignore_for_file: avoid_print, prefer_const_constructors, deprecated_member_use, unused_local_variable, await_only_futures
+// ignore_for_file: avoid_print, prefer_const_constructors, deprecated_member_use, unused_local_variable, await_only_futures, use_key_in_widget_constructors
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -17,10 +17,11 @@ class _YearFormState extends State<YearForm> {
   void _sendyear() async{
     FocusScope.of(context).unfocus();
     final user = await FirebaseAuth.instance.currentUser();
-    // final userData = await Firestore.instance.collection('users').document(user.uid).get();
-    final userData = await Firestore.instance.collection('courses');
-    print(userData);
-    
+    Firestore.instance.collection('courses').add({
+      'course': _selectedYear,
+      'createdAt': Timestamp.now(),
+      'userId': user.uid,
+    });
     _controller.clear();
     Navigator.of(context).pop();
   }

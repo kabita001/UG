@@ -1,8 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_if_null_operators
+// ignore_for_file: prefer_const_constructors, prefer_if_null_operators, annotate_overrides, overridden_fields, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
 import 'dart:math';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class FeedbackItem extends StatefulWidget {
@@ -56,7 +54,6 @@ class FeedbackItemState extends State<FeedbackItem> {
               height: min(10 * 20.0 + 10, 180),
               child: ListView(
                 padding: const EdgeInsets.all(8),
-
                 children: <Widget>[
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,10 +63,11 @@ class FeedbackItemState extends State<FeedbackItem> {
                         radius: 80,
                         backgroundColor: Colors.grey,
                       ),
+                      //course
                       SizedBox(
                         child: Container(
                           width: 280.0,
-                          height: 60.0,
+                          height: 50.0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15.0),
                             color: Colors.white,
@@ -77,11 +75,78 @@ class FeedbackItemState extends State<FeedbackItem> {
                               color: Colors.grey,
                             ),
                           ),
-                          child: Center(child: Text(widget.course, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))))),
-                      Text(widget.year, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      Text(widget.subject, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      Text(widget.feedbackType, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                      Text(widget.comment, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                          child: Center(child: Text(widget.course, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+                          )
+                        )
+                      ),
+                      //year
+                      SizedBox(height: 10,),
+                      SizedBox(
+                        child: Container(
+                          width: 280.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          child: Center(child: Text(widget.year, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+                          )
+                        )
+                      ),
+                      SizedBox(height: 10,),
+                      //subject
+                      SizedBox(
+                        child: Container(
+                          width: 280.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          child: Center(child: Text(widget.subject, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+                          )
+                        )
+                      ),
+                      SizedBox(height: 10,),
+                      //feedback Type
+                      SizedBox(
+                        child: Container(
+                          width: 280.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          child: Center(child: Text(widget.feedbackType, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+                          )
+                        )
+                      ),
+                      SizedBox(height: 10,),
+                      //comment
+                      SizedBox(
+                        child: Container(
+                          width: 280.0,
+                          height: 50.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15.0),
+                            color: Colors.white,
+                            border: Border.all(
+                              color: Colors.grey,
+                            ),
+                          ),
+                          child: Center(child: Text(widget.comment, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
+                          )
+                        )
+                      ),
                     ],
                   ),
                 ],
