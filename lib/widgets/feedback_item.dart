@@ -58,11 +58,17 @@ class FeedbackItemState extends State<FeedbackItem> {
                   Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
-                        backgroundImage: NetworkImage(widget.imageUrl != null?widget.imageUrl: 'https://i.pinimg.com/236x/aa/c8/27/aac827a17c5e7749823cc09cc8dbeec7.jpg'),
-                        radius: 80,
-                        backgroundColor: Colors.grey,
+                      Container(
+                        width: 200,
+                        height: 200,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            fit: BoxFit.fill,
+                            image: NetworkImage(widget.imageUrl != null?widget.imageUrl: 'https://i.pinimg.com/236x/aa/c8/27/aac827a17c5e7749823cc09cc8dbeec7.jpg'),
+                          ),
+                        ),
                       ),
+                      SizedBox(height: 20,),
                       //course
                       SizedBox(
                         child: Container(
@@ -157,3 +163,4 @@ class FeedbackItemState extends State<FeedbackItem> {
     );
   }
 }
+

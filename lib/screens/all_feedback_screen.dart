@@ -12,37 +12,6 @@ class AllFeedbackScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
         title: Text('All Feedback'),
-        actions: [
-          DropdownButton(
-            icon: Icon(
-              Icons.more_vert,
-              color: Theme.of(context).primaryTextTheme.button.color,
-            ),
-            items: [
-              DropdownMenuItem(
-                child: Container(
-                  // ignore: prefer_const_literals_to_create_immutables
-                  child: Row(children: [
-                    Icon(
-                      Icons.exit_to_app,
-                      color: Colors.pink,
-                    ),
-                    SizedBox(
-                      width: 8,
-                    ),
-                    Text('Logout'),
-                  ]),
-                ),
-                value: 'logout',
-              ),
-            ],
-            onChanged: (itemIdentifier) {
-              if (itemIdentifier == 'logout') {
-                FirebaseAuth.instance.signOut();
-              }
-            },
-          )
-        ],
       ),
       body: Container(
         child: Column(

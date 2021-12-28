@@ -79,7 +79,11 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                       child: Text(faculty),
                     );
                   }).toList(),
-                  decoration: InputDecoration(labelText: 'Course'),
+                  decoration: InputDecoration(labelText: 'Course',
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.transparent)
+                    ),
+                  ),
                   validator: (value) {
                     if(value == null){
                       return 'Select a Course';
@@ -116,7 +120,11 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                       child: Text(year),
                     );
                   }).toList(),
-                  decoration: InputDecoration(labelText: 'Year'),
+                  decoration: InputDecoration(labelText: 'Year',
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.transparent)
+                    ),
+                  ),
                   validator: (value) {
                     if(value == null){
                       return 'Select a Year';
@@ -176,9 +184,9 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                     );
                   }).toList(),
                   decoration: InputDecoration(labelText: 'Feedback Type',
-                    border: UnderlineInputBorder(
-                      borderSide:
-                      BorderSide(color: Colors.transparent)),
+                    enabledBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.transparent)
+                    ),
                   ),
                   validator: (value) {
                     if(value == null){
@@ -216,14 +224,7 @@ class _UserFeedbackFormState extends State<UserFeedbackForm> {
                       margin: const EdgeInsets.symmetric(vertical: 10.0),
                       child: UserImagePicker(_pickedImage),
                     ),
-                    SizedBox(
-                      height: 10,
-
-                    ),
-                    Container(
-                      margin: const EdgeInsets.symmetric(vertical: 10.0),
-                    ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 10),
                     Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
