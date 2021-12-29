@@ -2,6 +2,7 @@
 
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:ug_app/widgets/feedback_view.dart';
 
 class FeedbackItem extends StatefulWidget {
   final String course;
@@ -32,132 +33,18 @@ class FeedbackItemState extends State<FeedbackItem> {
       margin: EdgeInsets.all(10),
       child: Column(
         children: [
-          ListTile(
-            title: Text(
-              widget.username,
-            ),
-            subtitle: Text(widget.subject),
-            // DateFormat('dd-MM-yyyy-hh:mm').format(
-            //     widget.feedCreatedDate)
-            trailing: IconButton(
-              icon: Icon(_expanded ? Icons.expand_less : Icons.expand_more),
-              onPressed: () {
-                setState(() {
-                  _expanded = !_expanded;
-                });
-              },
-            ),
-          ),
-          if (_expanded)
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 4),
-              height: min(10 * 20.0 + 10, 180),
-              child: ListView(
-                padding: const EdgeInsets.all(8),
-                children: <Widget>[
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        width: 200,
-                        height: 200,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            fit: BoxFit.fill,
-                            image: NetworkImage(widget.imageUrl != null?widget.imageUrl: 'https://i.pinimg.com/236x/aa/c8/27/aac827a17c5e7749823cc09cc8dbeec7.jpg'),
-                          ),
-                        ),
-                      ),
-                      SizedBox(height: 20,),
-                      //course
-                      SizedBox(
-                        child: Container(
-                          width: 280.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          child: Center(child: Text(widget.course, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
-                          )
-                        )
-                      ),
-                      //year
-                      SizedBox(height: 10,),
-                      SizedBox(
-                        child: Container(
-                          width: 280.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          child: Center(child: Text(widget.year, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
-                          )
-                        )
-                      ),
-                      SizedBox(height: 10,),
-                      //subject
-                      SizedBox(
-                        child: Container(
-                          width: 280.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          child: Center(child: Text(widget.subject, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
-                          )
-                        )
-                      ),
-                      SizedBox(height: 10,),
-                      //feedback Type
-                      SizedBox(
-                        child: Container(
-                          width: 280.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          child: Center(child: Text(widget.feedbackType, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
-                          )
-                        )
-                      ),
-                      SizedBox(height: 10,),
-                      //comment
-                      SizedBox(
-                        child: Container(
-                          width: 280.0,
-                          height: 50.0,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(15.0),
-                            color: Colors.white,
-                            border: Border.all(
-                              color: Colors.grey,
-                            ),
-                          ),
-                          child: Center(child: Text(widget.comment, style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold))
-                          )
-                        )
-                      ),
-                    ],
-                  ),
-                ],
+          GestureDetector(
+            onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => FeedbackView(widget.course, widget.year, widget.subject, widget.feedbackType,
+            widget.comment, widget.imageUrl, widget.username)));
+            },
+            child: ListTile(
+              title: Text(
+                widget.username,
               ),
-            )
+              subtitle: Text(widget.subject),
+              ),        
+          ),
         ],
       ),
     );
