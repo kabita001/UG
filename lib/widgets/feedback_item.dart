@@ -34,7 +34,7 @@ class FeedbackItemState extends State<FeedbackItem> {
       child: Column(
         children: [
           GestureDetector(
-            onTap: (){
+            onTap: (){//call parameter using widget
               Navigator.of(context).push(MaterialPageRoute(builder: (ctx) => FeedbackView(widget.course, widget.year, widget.subject, widget.feedbackType,
             widget.comment, widget.imageUrl, widget.username)));
             },

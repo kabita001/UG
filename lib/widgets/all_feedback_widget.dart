@@ -19,7 +19,7 @@ class AllFeedbackWidget extends StatelessWidget {
             );
           }
           return  StreamBuilder(
-              stream: Firestore.instance.collection('feedbacks').snapshots(),
+              stream: Firestore.instance.collection('feedbacks').snapshots(),//access the firestore data collection from feedbacks table
               builder: (ctx, feedbackSnapshot) {
                 if (feedbackSnapshot.connectionState == ConnectionState.waiting) {
                   return Center(

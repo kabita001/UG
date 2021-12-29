@@ -14,8 +14,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Student Support and Feedback System',
-      home: StreamBuilder(// 
-        stream: FirebaseAuth.instance.onAuthStateChanged,
+      home: StreamBuilder(// Creates a new stresm builder that builds itself based on the 
+      //latest snapshot of interaction with the specified [stream] and whose build strategy is given by [builder].
+        stream: FirebaseAuth.instance.onAuthStateChanged,//Receive each time the user signIn or signOut
         builder: (ctx, snapshot) {
           if (snapshot.hasData) {
             print (snapshot.data.uid);
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
                     .snapshots(),
                 builder:
                     (BuildContext ctx, AsyncSnapshot<DocumentSnapshot> snap) {
-                  // 
+                  // redirect user if not log out
                   if (snap.hasData && snap.data != null) {
                     final user = snap.data.data;
                     if (user['role'] == 'SUPER') {

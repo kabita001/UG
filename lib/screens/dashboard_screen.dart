@@ -10,7 +10,7 @@ import 'package:ug_app/screens/registration_screen.dart';
 import 'package:ug_app/widgets/drawer_widget.dart';
 class DashboardScreen extends StatelessWidget {
   final Map<String, dynamic> userData;
-  DashboardScreen(this.userData);
+  DashboardScreen(this.userData);//call parameter using this constructor
 
 
   @override

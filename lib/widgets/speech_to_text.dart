@@ -29,9 +29,9 @@ class _SpeechToTextState extends State<SpeechToText> {
           _isListening = true;
         });
         _speech.listen(
-            onResult: (val) => setState(() {
-                  _textSpeech = val.recognizedWords;
-                }));
+          onResult: (val) => setState(() {
+            _textSpeech = val.recognizedWords;
+          }));
       }
     } else {
       setState(() {
@@ -54,6 +54,7 @@ class _SpeechToTextState extends State<SpeechToText> {
       child: Card(
           child:ListTile(
             title: Text(_textSpeech),
+            //trailing widget used to display after the title
             trailing: AvatarGlow(
               animate: _isListening,
               glowColor: Theme.of(context).primaryColor,

@@ -1,4 +1,4 @@
-// ignore_for_file: deprecated_member_use, avoid_print, use_key_in_widget_constructors, unused_local_variable
+// ignore_for_file: deprecated_member_use, avoid_print, use_key_in_widget_constructors, unused_local_variable, prefer_const_constructors
 
 
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,16 +27,7 @@ class _AuthScreenState extends State<AuthScreen> {
       if (isLogin) {
         authResult = await _auth.signInWithEmailAndPassword(
             email: email, password: password);
-      } /*else {
-        authResult = await _auth.createUserWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
-        final ref = FirebaseStorage.instance.ref().child(authResult.user.uid);
-        await Firestore.instance.collection('users').document(authResult.user.uid).setData({
-               'email': email, 'userCreatedDate': DateTime.now()
-            });
-      }*/
+      } 
     } on PlatformException catch (err) {
       var message = 'An error occured, please check your credentials!';
       if (err.message != null) {
@@ -46,6 +37,12 @@ class _AuthScreenState extends State<AuthScreen> {
         SnackBar(
           content: Text(message),
           backgroundColor: Theme.of(context).errorColor,
+        ),
+      );
+      Scaffold.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Login Successful'),
+          backgroundColor: Theme.of(context).primaryColor,
         ),
       );
       setState(() {
