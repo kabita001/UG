@@ -22,7 +22,7 @@ class FeedbackView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.redAccent,
-        title: Text(feedbackType),
+        title: Text(username),
       ),
       body: SingleChildScrollView(
         child: Center(
