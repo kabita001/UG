@@ -2,7 +2,6 @@
 // ignore_for_file: avoid_unnecessary_containers, prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:ug_app/widgets/drawer_widget.dart';
 class Profile extends StatelessWidget {
   final Map<String, dynamic> userData;
   Profile(this.userData);

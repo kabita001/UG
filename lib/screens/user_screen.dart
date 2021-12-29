@@ -6,7 +6,6 @@ import 'package:ug_app/screens/calendar.dart';
 import 'package:ug_app/screens/profile.dart';
 import 'package:ug_app/screens/user_feedback_screen.dart';
 import 'package:ug_app/widgets/drawer_widget.dart';
-import 'package:ug_app/widgets/video_picker.dart';
 class UserScreen extends StatelessWidget {
   final Map<String, dynamic> userData;
   UserScreen(this.userData);
