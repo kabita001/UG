@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors, prefer_if_null_operators, annotate_overrides, overridden_fields, prefer_const_constructors_in_immutables, use_key_in_widget_constructors
 
-import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:ug_app/widgets/feedback_view.dart';
 
